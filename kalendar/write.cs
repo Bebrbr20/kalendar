@@ -12,25 +12,38 @@ namespace kalendar
     public class Event
     {
         public string Title { get; set; }
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
     }
     public class write
 	{
 		public static void ValueEvent()
 		{
-            Console.WriteLine("Zadej událost:");
-            string eventos = Console.ReadLine();
-            DateOnly datum;
+            Console.WriteLine("Zadej název události:");
+            string eventos;
+            while (true)
+            {
+                eventos = Console.ReadLine();
+                if (eventos != null)
+                {
+                    break;
+                }
+            }
+            
+            DateTime datum;
 
             while (true)
             {
-                Console.WriteLine("Zadej datum a čas: (mm/dd/rrrr)");
+                Console.WriteLine("Zadej datum a čas: (mm/dd/rrrr hh:mm)");
                 string date = Console.ReadLine();
                 
-                if (DateOnly.TryParse(date, out DateOnly result))
+                if (DateTime.TryParse(date, out DateTime result))
                 {
                     datum = result;
                     break;
+                }
+                else
+                {
+                    Console.WriteLine("Špatně zadaný formát!");
                 }
             }
             Event events = new Event();
@@ -55,7 +68,7 @@ namespace kalendar
             Console.ReadLine();
 
         }
-        public static void ReadAllEvents()
+        public static List<Event> ReadAllEvents()
         {
             Event events = new Event();
             var filePath = @"../../../events.json";
@@ -65,15 +78,8 @@ namespace kalendar
             ?? new List<Event>();
 
             List<Event> SortedList = eventlist.OrderBy(o => o.Date).ToList();
-            int index = 1;
-            foreach (var item in SortedList)
-            {
-                Console.Write(index + ")");
-                Console.Write(item.Title);
-                Console.WriteLine(" "+item.Date);
 
-                index++;
-            }
+            return SortedList;
 
            
            
@@ -110,13 +116,13 @@ namespace kalendar
             if (index != null)
             {
 
-                DateOnly newdate;
+                DateTime newdate;
                 while (true)
                 {
                     Console.WriteLine("Zadej datum a čas: (dd/mm/rrrr)");
                     string date = Console.ReadLine();
 
-                    if (DateOnly.TryParse(date, out DateOnly result))
+                    if (DateTime.TryParse(date, out DateTime result))
                     {
                         newdate = result;
                         break;

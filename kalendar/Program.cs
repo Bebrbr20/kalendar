@@ -7,7 +7,8 @@ namespace kalendar
     {
         static void Main()
             {
-            menu.Start();
+            //menu.Start();
+            Calendar.Cal();
            } 
         
 
