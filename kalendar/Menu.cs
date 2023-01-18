@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Text.Json;
+using Newtonsoft.Json.Linq;
 
 namespace kalendar
 {
@@ -15,23 +16,49 @@ namespace kalendar
 
             Console.WriteLine("Milý Petře, vítejte!");
 
-            Console.WriteLine("Pro zobrazení vašich událostí stiskněte 1)");
-            Console.WriteLine("Pro vytvoření nové události stiskněte 2)");
-
+            
 
             bool mainMenuRes = true;
             while (mainMenuRes == true)
             {
+
+                Console.WriteLine("Zobrazení událostí 1)");
+                Console.WriteLine("Vytvoření události 2)");
+                Console.WriteLine("Smazání události 3)");
+                Console.WriteLine("Upravení události 4)");
+                Console.WriteLine("Ukončit 5)");
+
                 int res = ChooseInput();
 
                 switch (res)
                 {
                     case 1:
-                        DisplayEvents();
-                        mainMenuRes = false;
+
+                        write.ReadAllEvents();
+                        
+
+                        Console.ReadLine();
+
                         break;
                     case 2:
                         write.ValueEvent();
+                        
+                        break;
+                    case 3:
+                        write.ReadAllEvents();
+                        Console.Write("Vyberte index události ke smazání ->");
+                        int res2 = ChooseInt();
+                        write.RemoveEvent(res2);
+                       
+                        break;
+                    case 4:
+                        write.ReadAllEvents();
+                        Console.Write("Vyberte index události k upravení ->");
+                        int res3 = ChooseInt();
+                        write.UpdateEvent(res3);
+                        
+                        break;
+                    case 0:
                         mainMenuRes = false;
                         break;
                 }
@@ -60,12 +87,37 @@ namespace kalendar
                     case "2":
                         return 2;
                         break;
-                    
-                    default: return 3;
+                case "3":
+                    return 3;
+                    break;
+                case "4":
+                    return 4;
+                    break;
+
+                default: return 0;
 
                 };
 
+
             }
+
+        internal static int ChooseInt()
+        {
+            int value;
+            while (true)
+            {
+                string input = Console.ReadLine();
+              
+                if (int.TryParse(input, out value))
+                {
+                    
+                    break;
+                }
+                
+               
+            }
+            return value;
+
+        }
         }
     }
-
