@@ -34,7 +34,7 @@ namespace kalendar
                 {
                     case 1:
 
-                        write.ReadAllEvents();
+                        Calendar.Cal();
                         
 
                         Console.ReadLine();

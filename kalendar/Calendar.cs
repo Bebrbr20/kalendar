@@ -19,7 +19,8 @@ namespace kalendar
                 Console.WriteLine("\n\n-Nabídka možností-");
                 Console.WriteLine("(D)alší týden");
                 Console.WriteLine("(P)ředchozí týden");
-                Console.WriteLine("(K)onec");
+                Console.WriteLine("\n(N)ová událost");
+                Console.WriteLine("\n(K)onec");
 
                 string inpt = Console.ReadLine();
                
@@ -27,7 +28,7 @@ namespace kalendar
                 if(inpt == "D" || inpt == "d")
                 {
                     weekS += 7;
-
+                    Console.Clear();
                     WeekView(weekS);
 
                    
@@ -35,7 +36,7 @@ namespace kalendar
                 else if(inpt == "P" || inpt == "p")
                 {
                     weekS -= 7;
-
+                    Console.Clear();
                     WeekView(weekS);
                   
                     
@@ -44,6 +45,12 @@ namespace kalendar
                 {
                     break;
                 }
+                else if (inpt == "n" || inpt == "N")
+                {
+                    write.ValueEvent();
+                }
+
+
             }
             
 
@@ -79,5 +86,6 @@ namespace kalendar
                 if (index == 1) { Console.Write(" -Žádné události \n"); }
             }
         }
+
     }
 }
