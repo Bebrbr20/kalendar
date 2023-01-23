@@ -16,7 +16,7 @@ namespace kalendar
 
             Console.WriteLine("Milý Petře, vítejte!");
 
-            
+
 
             bool mainMenuRes = true;
             while (mainMenuRes == true)
@@ -35,28 +35,28 @@ namespace kalendar
                     case 1:
 
                         Calendar.Cal();
-                        
+
 
                         Console.ReadLine();
 
                         break;
                     case 2:
                         write.ValueEvent();
-                        
+
                         break;
                     case 3:
                         write.ReadAllEvents();
                         Console.Write("Vyberte index události ke smazání ->");
                         int res2 = ChooseInt();
                         write.RemoveEvent(res2);
-                       
+
                         break;
                     case 4:
                         write.ReadAllEvents();
                         Console.Write("Vyberte index události k upravení ->");
                         int res3 = ChooseInt();
                         write.UpdateEvent(res3);
-                        
+
                         break;
                     case 0:
                         mainMenuRes = false;
@@ -64,29 +64,29 @@ namespace kalendar
                 }
             };
         }
-            // Funkce na zobrazení dat z json souboru
-            internal static async Task DisplayEvents()
-            {
+        // Funkce na zobrazení dat z json souboru
+        internal static async Task DisplayEvents()
+        {
             var filePath = @"../../../events.json";
             var displayEvents = JsonConvert.DeserializeObject(filePath);
 
-            
+
         }
-        
-            internal static int ChooseInput()
+
+        internal static int ChooseInput()
+        {
+            string input = "";
+            input = Console.ReadLine();
+
+
+            switch (input.ToLower())
             {
-                string input = "";
-                input = Console.ReadLine();
-
-
-                switch (input.ToLower())
-                {
-                    case "1":
-                        return 1;
-                        break;
-                    case "2":
-                        return 2;
-                        break;
+                case "1":
+                    return 1;
+                    break;
+                case "2":
+                    return 2;
+                    break;
                 case "3":
                     return 3;
                     break;
@@ -96,10 +96,10 @@ namespace kalendar
 
                 default: return 0;
 
-                };
+            };
 
 
-            }
+        }
 
         internal static int ChooseInt()
         {
@@ -107,17 +107,17 @@ namespace kalendar
             while (true)
             {
                 string input = Console.ReadLine();
-              
+
                 if (int.TryParse(input, out value))
                 {
-                    
+
                     break;
                 }
-                
-               
+
+
             }
             return value;
 
         }
-        }
     }
+}

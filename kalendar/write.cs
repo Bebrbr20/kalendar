@@ -15,9 +15,9 @@ namespace kalendar
         public DateTime Date { get; set; }
     }
     public class write
-	{
-		public static void ValueEvent()
-		{
+    {
+        public static void ValueEvent()
+        {
             Console.WriteLine("Zadej název události:");
             string eventos;
             while (true)
@@ -28,14 +28,14 @@ namespace kalendar
                     break;
                 }
             }
-            
+
             DateTime datum;
 
             while (true)
             {
                 Console.WriteLine("Zadej datum a čas: (mm/dd/rrrr hh:mm)");
                 string date = Console.ReadLine();
-                
+
                 if (DateTime.TryParse(date, out DateTime result))
                 {
                     datum = result;
@@ -53,9 +53,10 @@ namespace kalendar
             var eventlist = JsonConvert.DeserializeObject<List<Event>>(jsonData)
                                   ?? new List<Event>();
             eventlist.Add(new Event()
-            { Title = eventos,
-              Date = datum
-            }) ;
+            {
+                Title = eventos,
+                Date = datum
+            });
 
             jsonData = JsonConvert.SerializeObject(eventlist);
             System.IO.File.WriteAllText(filePath, jsonData);
@@ -66,6 +67,8 @@ namespace kalendar
 
             Console.WriteLine("\nPro pokračování stiskni jakoukoliv klávesu");
             Console.ReadLine();
+
+            Console.Clear();
 
         }
         public static List<Event> ReadAllEvents()
@@ -81,8 +84,8 @@ namespace kalendar
 
             return SortedList;
 
-           
-           
+
+
         }
 
         public static bool RemoveEvent(int index)
@@ -96,7 +99,7 @@ namespace kalendar
                 var eventlist = JsonConvert.DeserializeObject<List<Event>>(jsonData)
                 ?? new List<Event>();
 
-                eventlist.RemoveAt(index-1);
+                eventlist.RemoveAt(index - 1);
 
                 jsonData = JsonConvert.SerializeObject(eventlist);
                 System.IO.File.WriteAllText(filePath, jsonData);
@@ -107,7 +110,7 @@ namespace kalendar
             {
                 return false;
             }
-            
+
         }
 
 
@@ -155,4 +158,3 @@ namespace kalendar
         }
     }
 }
-
